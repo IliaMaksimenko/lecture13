@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>School</title>
+    <link rel="stylesheet" th:href="@{/templates/style.css}" type="text/css"/>
+</head>
+<body>
+<h1>Учебный класс</h1>
+<table>
+    <thead>
+    <tr>
+        <th></th>
+        <th> id </th>
+        <th> имя</th>
+        <th> фамилия</th>
+        <th> возраст</th>
+        <th> электронная почта</th>
+        <th> класс</th>
+    </tr>
+    </thead>
+    <tbody>
+    <form>
+        <tr th:each="student : ${students}">
+            <td><span th:text="${student.id}"></span></td>
+            <td><span th:text="${student.name}"></span></td>
+            <td><span th:text="${student.surname}"></span></td>
+            <td><span th:text="${student.age}"></span></td>
+            <td><span th:text="${student.email}"></span></td>
+            <td><span th:text="${student.classroom}"></span></td>
+        </tr>
+    </form>
+    </tbody>
+</table>
+<td>
+    <form action="/admin/add" method="GET">
+        <div th:if="'admin' == ${user}">
+            <input type="submit" value="добавить ученика">
+        </div>
+    </form>
+</td>
+<form action="/logout" method="GET">
+    <input type="submit" value="сменить пользователя">
+</form>
+</body>
+</html>
